@@ -1,0 +1,25 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-filesystem", "/Users/Kyle/Workspace/test-docs-move"],
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    "github": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "your_github_token_here"
+      }
+    },
+    "brave-search": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-brave-search"],
+      "env": {
+        "BRAVE_API_KEY": "your_brave_api_key_here"
+      }
+    }
+  }
+}
