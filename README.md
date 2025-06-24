@@ -37,7 +37,7 @@ claude --file .claude/commands/review.md
 ### 🤖 Claude Code Integration
 - **CLAUDE.md** - Project context and development guidelines
 - **Automation Commands** - Pre-built workflows for common development tasks
-- **MCP Configurations** - Enhanced AI capabilities with file system, GitHub, and web search
+- **MCP Configurations** - Enhanced AI capabilities with Serena IDE assistant and Context7 documentation
 
 ### ⚡ Development Automation
 - **Bootstrap Command** - Converts PRD and Technical Architecture into comprehensive GitHub issue backlog
@@ -80,18 +80,19 @@ The `./kickstart "Project Name"` script automatically:
 - ✅ Provides clear next steps for development
 
 ### MCP Integration Setup
-The template includes pre-configured MCP servers for enhanced AI capabilities:
+The template includes two MCP servers for enhanced development capabilities:
 
-1. **File System Access** (auto-configured)
-   - Full project directory access for Claude Code
+1. **Serena IDE Assistant** (auto-configured)
+   - Intelligent code completion and analysis
+   - Project-aware development assistance
+   - Requires `uvx` package manager (install with `curl -LsSf https://astral.sh/uv/install.sh | sh`)
+   - No additional API keys required
 
-2. **GitHub Integration** (requires setup)
-   - Get a token: https://github.com/settings/tokens
-   - Replace `your_github_token_here` in `.mcp.json`
-
-3. **Web Search** (requires setup)
-   - Get API key: https://api.search.brave.com/app/keys
-   - Replace `your_brave_api_key_here` in `.mcp.json`
+2. **Context7 Documentation** (auto-configured)
+   - Access to comprehensive library documentation
+   - Smart library ID resolution
+   - Requires Node.js ≥ v18.0.0
+   - No additional API keys required
 
 ## 🎯 Development Workflow
 
@@ -159,16 +160,17 @@ Your Claude Code prompt here...
 ```
 
 ### Modifying MCP Configurations
-Edit `.mcp.json` to add or modify MCP servers:
+Edit `.mcp.json` to add or modify MCP servers. Current configuration includes:
 ```json
 {
   "mcpServers": {
-    "your-custom-server": {
+    "serena": {
+      "command": "uvx",
+      "args": ["--from", "git+https://github.com/oraios/serena", "serena-mcp-server", "--context", "ide-assistant", "--project", "{{PROJECT_SLUG}}"]
+    },
+    "context7": {
       "command": "npx",
-      "args": ["@your/mcp-server"],
-      "env": {
-        "API_KEY": "your_key_here"
-      }
+      "args": ["-y", "@upstash/context7-mcp@latest"]
     }
   }
 }

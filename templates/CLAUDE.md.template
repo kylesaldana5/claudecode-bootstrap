@@ -60,13 +60,12 @@ Creates individual GitHub issues from feature descriptions.
 
 ## MCP Integrations
 
-This project is configured with standard MCP servers for enhanced AI capabilities:
+This project is configured with two MCP servers for enhanced AI capabilities:
 
-- **File System Access:** Full access to project directory
-- **GitHub Integration:** Repository operations, issues, PRs (requires setup)
-- **Web Search:** Research capabilities via Brave Search (requires setup)
+- **Serena IDE Assistant:** Intelligent code completion, analysis, and project-aware development assistance
+- **Context7 Documentation:** Access to comprehensive library documentation and smart library resolution
 
-See `.mcp.json` for configuration. Replace API keys as needed for GitHub and Brave Search integration.
+Both MCP servers are automatically configured in `.mcp.json`. Serena requires `uvx` package manager, while Context7 requires Node.js ≥ v18.0.0.
 
 ## Best Practices
 
