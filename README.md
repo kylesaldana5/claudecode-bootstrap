@@ -28,7 +28,18 @@ This repository includes comprehensive example documents that you can use as tem
 - Security and performance considerations
 - Development workflow planning
 
-Simply copy the structure and adapt the content for your specific project needs.
+#### 💡 My Personal Workflow for Document Generation
+For generating comprehensive PRDs and technical documentation, I personally use the [BMAD Method](https://github.com/bmadcode/BMAD-METHOD) with Claude Code. This systematic approach helps create thorough, professional documentation through AI-assisted development workflows.
+
+**Quick setup:**
+```bash
+npx bmad-method install
+# Choose "Complete installation" and "Claude Code"
+```
+
+The BMAD Method provides specialized agents (`/pm`, `/architect`, `/analyst`) that work together to create detailed project documentation, which I then use as the foundation for projects in this template.
+
+Simply copy the structure from the example documents and adapt the content for your specific project needs.
 
 ### 4. Start Development
 ```bash
