@@ -15,10 +15,20 @@ chmod +x kickstart
 ./kickstart "My Awesome Project"
 ```
 
-### 3. Add Your Documentation
-Place your project documentation in the `docs/` directory:
-- `docs/PRD.md` - Product Requirements Document
-- `docs/TechnicalArchitecture.md` - Technical Architecture Document
+### 3. Generate Your Documentation
+This repository includes comprehensive example documents that you can use as templates:
+
+- **`docs/PRD.md`** - Complete Product Requirements Document (using a to-do app example)
+- **`docs/TechnicalArchitecture.md`** - Detailed Technical Architecture Document (using a to-do app example)
+
+**Need help generating in-depth PRDs and technical architecture?** Use this repository as a reference! The included documents demonstrate best practices for:
+- Requirements gathering and specification
+- Technical system design and architecture
+- Component breakdown and data flow
+- Security and performance considerations
+- Development workflow planning
+
+Simply copy the structure and adapt the content for your specific project needs.
 
 ### 4. Start Development
 ```bash
@@ -206,6 +216,7 @@ The template is framework-agnostic. Add tech-stack-specific configurations as ne
 - **Team Development** - Standardized processes and structure
 - **Learning Projects** - Best practices built-in from day one
 - **Production Applications** - Scalable foundation with proper tooling
+- **Documentation Templates** - Use example PRDs and architecture docs as starting points for any project
 
 ## 🤝 Contributing
 
