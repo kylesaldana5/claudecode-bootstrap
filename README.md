@@ -23,13 +23,13 @@ Place your project documentation in the `docs/` directory:
 ### 4. Start Development
 ```bash
 # Create GitHub issues from your PRD
-claude --file .claude/commands/bootstrap.md
+/project:bootstrap
 
 # Implement features systematically
-claude --file .claude/commands/work.md
+/project:work
 
 # Review pull requests thoroughly
-claude --file .claude/commands/review.md
+/project:review
 ```
 
 ## 📋 What's Included
@@ -103,7 +103,7 @@ The template includes two MCP servers for enhanced development capabilities:
 
 ### 2. Issue Generation
 ```bash
-claude --file .claude/commands/bootstrap.md
+/project:bootstrap
 ```
 - Automatically converts PRD into structured GitHub issues
 - Maps requirements to implementation tasks
@@ -111,7 +111,7 @@ claude --file .claude/commands/bootstrap.md
 
 ### 3. Feature Implementation
 ```bash
-claude --file .claude/commands/work.md
+/project:work
 ```
 - Systematic issue implementation
 - Automated Git workflow (branch → commit → PR)
@@ -119,7 +119,7 @@ claude --file .claude/commands/work.md
 
 ### 4. Code Review
 ```bash
-claude --file .claude/commands/review.md
+/project:review
 ```
 - Comprehensive PR analysis
 - Security and performance review
@@ -132,10 +132,10 @@ Repeat the work/review cycle for continuous development.
 
 ### Core Commands
 - `./kickstart "Project Name"` - Initialize new project from template
-- `claude --file .claude/commands/bootstrap.md` - Generate GitHub issues from PRD
-- `claude --file .claude/commands/work.md` - Implement features systematically
-- `claude --file .claude/commands/review.md` - Review pull requests
-- `claude --file .claude/commands/issues.md` - Create individual issues
+- `/project:bootstrap` - Generate GitHub issues from PRD
+- `/project:work` - Implement features systematically
+- `/project:review` - Review pull requests
+- `/project:issues` - Create individual issues
 
 ### File Structure Commands
 After running kickstart, your project will have:

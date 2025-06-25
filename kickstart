@@ -102,8 +102,8 @@ print_success "🎉 Project initialization complete!"
 echo
 print_status "Next steps:"
 echo "  1. Add your PRD.md and TechnicalArchitecture.md files to the docs/ directory"
-echo "  2. Run bootstrap command to create GitHub issues: claude --file .claude/commands/bootstrap.md"
-echo "  3. Start development with: claude --file .claude/commands/work.md"
+echo "  2. Run bootstrap command to create GitHub issues: /project:bootstrap"
+echo "  3. Start development with: /project:work"
 echo
 print_status "Available commands in .claude/commands/:"
 if [ -d "./.claude/commands" ]; then
