@@ -23,13 +23,13 @@ Place your project documentation in the `docs/` directory:
 ### 4. Start Development
 ```bash
 # Create GitHub issues from your PRD
-/project:bootstrap
+/bootstrap
 
 # Implement features systematically
-/project:work
+/work
 
 # Review pull requests thoroughly
-/project:review
+/review
 ```
 
 ## 📋 What's Included
@@ -103,7 +103,7 @@ The template includes two MCP servers for enhanced development capabilities:
 
 ### 2. Issue Generation
 ```bash
-/project:bootstrap
+/bootstrap
 ```
 - Automatically converts PRD into structured GitHub issues
 - Maps requirements to implementation tasks
@@ -111,7 +111,7 @@ The template includes two MCP servers for enhanced development capabilities:
 
 ### 3. Feature Implementation
 ```bash
-/project:work
+/work
 ```
 - Systematic issue implementation
 - Automated Git workflow (branch → commit → PR)
@@ -119,7 +119,7 @@ The template includes two MCP servers for enhanced development capabilities:
 
 ### 4. Code Review
 ```bash
-/project:review
+/review
 ```
 - Comprehensive PR analysis
 - Security and performance review
@@ -132,10 +132,10 @@ Repeat the work/review cycle for continuous development.
 
 ### Core Commands
 - `./kickstart "Project Name"` - Initialize new project from template
-- `/project:bootstrap` - Generate GitHub issues from PRD
-- `/project:work` - Implement features systematically
-- `/project:review` - Review pull requests
-- `/project:issues` - Create individual issues
+- `/bootstrap` - Generate GitHub issues from PRD
+- `/work` - Implement features systematically
+- `/review` - Review pull requests
+- `/issues` - Create individual issues
 
 ### File Structure Commands
 After running kickstart, your project will have:
