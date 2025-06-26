@@ -49,7 +49,6 @@ This section details what the system _must do_ (functional) and what qualities t
 - **Data Persistence:**
   - As a system, all task data is automatically saved and persists between sessions.
   - As a user, my tasks are available when I log back into the app.
-
 #### 2.2 Non-Functional Requirements (Qualities the system must have)
 
 - **Performance:**

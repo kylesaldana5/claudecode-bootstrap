@@ -1,29 +1,30 @@
-# Cooking Game UI/UX Specification
+# Personal To-Do List App UI/UX Specification
 
 ## Introduction
 
-This document defines the user experience goals, information architecture, user flows, and visual design specifications for Cooking Game's user interface. It serves as the foundation for visual design and frontend development, ensuring a cohesive and user-centered experience.
+This document defines the user experience goals, information architecture, user flows, and visual design specifications for the Personal To-Do List App's user interface. It serves as the foundation for visual design and frontend development, ensuring a cohesive and user-centered experience.
 
 ### Overall UX Goals & Principles
 
 ### Target User Personas
 
-* **The Culinary Explorer:** Tech-savvy individuals (25-45) who enjoy cooking as a hobby, seek efficiency, and are comfortable with online platforms and gamified experiences. They desire fresh inspiration, progression, and effective ingredient utilization.
-* **The Budget-Conscious Home Cook:** Individuals/families (25-55) focused on maximizing grocery budgets and minimizing waste. They seek variety and efficiency in meal planning.
+* **The Busy Professional:** Working individuals (25-45) who juggle multiple projects and deadlines, seek efficiency in task management, and need quick access to their to-do lists across devices. They value organization, prioritization, and time-saving features.
+* **The Organized Student:** Students (18-30) managing coursework, assignments, and personal tasks. They need visual organization, deadline tracking, and a system that helps them stay on top of academic and personal responsibilities.
+* **The Productivity-Focused Individual:** People of all ages who actively work on personal organization and productivity. They appreciate clean interfaces, customization options, and features that help them maintain focus and accomplish goals.
 
 ### Usability Goals
 
-* **Ease of learning:** New users can complete core tasks (ingredient input, recipe suggestion) within minutes.
-* **Efficiency of use:** Experienced users can quickly navigate challenges and profile sections.
-* **Error prevention:** Clear validation for ingredient input and challenge completion.
-* **Memorability:** Infrequent users can easily recall how to interact with core features.
+* **Ease of learning:** New users can create their first task and understand core features within 2 minutes.
+* **Efficiency of use:** Experienced users can quickly add, edit, and organize tasks with minimal clicks.
+* **Error prevention:** Clear validation for task input and intuitive confirmation for destructive actions.
+* **Memorability:** Infrequent users can easily recall how to perform common tasks like adding due dates or setting priorities.
 
 ### Design Principles
 
-1. **Clarity over cleverness:** Prioritize clear communication of recipes and challenge objectives.
-2. **Progressive disclosure:** Show only what's needed, when it's needed (e.g., recipe steps reveal as user progresses).
-3. **Consistent patterns:** Use familiar UI patterns throughout the application for navigation and interaction.
-4. **Immediate feedback:** Every action (e.g., adding an ingredient, completing a challenge) should have a clear, immediate visual response.
+1. **Clarity over complexity:** Prioritize clear task information and straightforward actions over feature richness.
+2. **Progressive disclosure:** Show essential information first, with additional details available on demand.
+3. **Consistent patterns:** Use familiar UI patterns for task management that users expect from productivity apps.
+4. **Immediate feedback:** Every action (adding, completing, editing tasks) should have clear, immediate visual response.
 5. **Accessible by default:** Design for inclusivity, considering contrast, keyboard navigation, and screen reader support.
 
 ### Change Log
@@ -38,78 +39,107 @@ This document defines the user experience goals, information architecture, user 
 
 ```mermaid
 graph TD
-    A[Splash/Login] --> B(Main Dashboard)
-    B --> C[Ingredient Input Screen]
-    B --> D[Daily Mystery Basket Challenge Screen]
-    B --> E[Chef's Profile Screen]
-    C --> C1[Recipe Suggestion / Detail Screen]
-    D --> D1[Challenge Completion Confirmation]
-    E --> E1[Culinary Passport Screen]
-    E1 --> E2[Passport Stamp Details]
+    A[Login/Register] --> B(Main Dashboard)
+    B --> C[Task List View]
+    B --> D[Add/Edit Task Form]
+    B --> E[Task Filters & Search]
+    B --> F[User Profile]
+    C --> C1[Task Detail View]
+    D --> D1[Task Creation Confirmation]
+    E --> E1[Filtered Results View]
+    F --> F1[Account Settings]
 ```
 
 ### Navigation Structure
 
-**Primary Navigation:** A persistent bottom navigation bar (on mobile) or a prominent left-hand sidebar (on desktop) for main sections: Home (Dashboard), Ingredients, Challenges, Profile.
+**Primary Navigation:** A clean top navigation bar with main sections: Dashboard, All Tasks, Add Task, Profile. On mobile, this becomes a bottom navigation bar for thumb-friendly access.
 
-**Secondary Navigation:** Within sections like "Chef's Profile," sub-navigation tabs for "Culinary Passport" and other future profile features.
+**Secondary Navigation:** Within task views, filtering options and sorting controls. Context menus for task actions (edit, delete, duplicate).
 
-**Breadcrumb Strategy:** Not explicitly needed for MVP due to flat navigation structure; future complex flows may implement.
+**Breadcrumb Strategy:** Minimal breadcrumbs since the app has a flat structure. Current filter or view state is clearly indicated in the header.
 
 ## User Flows
 
-### 1. Ingredient Input & Recipe Suggestion
+### 1. Task Creation & Management
 
-**User Goal:** Discover a new recipe based on ingredients they have.
+**User Goal:** Create a new task with relevant details and organize it effectively.
 
-**Entry Points:** Main Dashboard, dedicated "Ingredients" tab/button.
+**Entry Points:** Main Dashboard, "Add Task" button, quick-add form.
 
-**Success Criteria:** User successfully receives a relevant recipe suggestion with difficulty and cook time.
-
-#### Flow Diagram
-
-```mermaid
-graph TD
-    A[Start: Main Dashboard] --> B[Click 'Input Ingredients' Button]
-    B --> C[Ingredient Input Screen]
-    C -- Type/Select Ingredients --> D[Display Ingredient List]
-    D -- Click 'Suggest Recipe' --> E[Recipe Engine (Backend)]
-    E -- Returns Recipe --> F[Recipe Suggestion / Detail Screen]
-    F -- Click 'Suggest Another' --> E
-    F -- Click 'Start Cooking' --> G[Recipe Steps Display (In-Focus)]
-    G -- Click 'Back to Input' --> C
-```
-
-#### Edge Cases & Error Handling:
-
-- **No matching recipes:** Display a "No recipes found, try adding more ingredients or adjust your search" message.
-- **Invalid ingredient input:** Highlight invalid input with immediate feedback; suggest valid alternatives.
-- **Network error during suggestion:** Display a user-friendly error message with a retry option.
-
-### 2. Daily Mystery Basket Challenge Participation
-
-**User Goal:** Complete a daily cooking challenge and earn a reward.
-
-**Entry Points:** Main Dashboard, dedicated "Challenges" tab/button.
-
-**Success Criteria:** User successfully marks challenge as complete and receives confirmation/reward.
+**Success Criteria:** User successfully creates a task with title, description, priority, and due date.
 
 #### Flow Diagram
 
 ```mermaid
 graph TD
-    A[Start: Main Dashboard] --> B[Click 'Daily Challenge' Button]
-    B --> C[Daily Mystery Basket Challenge Screen]
-    C -- Display Ingredients --> D[User Prepares Dish (Real World)]
-    D -- Click 'Mark as Complete' --> E[Challenge & Progression (Backend)]
-    E -- Records Completion, Returns Reward --> F[Challenge Completion Confirmation/Reward Screen]
-    F --> G[Update Chef's Profile/Culinary Passport]
+    A[Start: Main Dashboard] --> B[Click 'Add Task' Button]
+    B --> C[Task Creation Form]
+    C -- Enter Task Details --> D[Set Priority & Due Date]
+    D -- Click 'Save Task' --> E[Task Saved to Database]
+    E -- Returns to Task List --> F[Task List Updated]
+    F -- Task Visible in List --> G[Success Confirmation]
+    G -- Click 'Add Another' --> C
+    G -- Click 'View Task' --> H[Task Detail View]
 ```
 
 #### Edge Cases & Error Handling:
 
-- **Challenge already completed:** Display "Challenge already completed for today!" message.
-- **Network error on completion:** Display error, allow retry, ensure idempotency for completion.
+- **Empty task title:** Highlight required field with clear error message; prevent submission.
+- **Invalid due date:** Show inline validation with suggested date format.
+- **Network error during save:** Display user-friendly error message with retry option and local storage backup.
+
+### 2. Task Organization & Filtering
+
+**User Goal:** Find and organize tasks using priorities, categories, and due dates.
+
+**Entry Points:** Main Task List, Filter Controls, Search Bar.
+
+**Success Criteria:** User successfully filters tasks to find relevant items and can modify organization.
+
+#### Flow Diagram
+
+```mermaid
+graph TD
+    A[Start: Task List View] --> B[Click Filter Controls]
+    B --> C[Select Filter Criteria]
+    C -- Choose Priority/Status/Date --> D[Apply Filters]
+    D -- Filter Applied --> E[Filtered Results Display]
+    E -- Click 'Clear Filters' --> A
+    E -- Click Task to Edit --> F[Task Edit Form]
+    F -- Save Changes --> G[Return to Filtered View]
+```
+
+#### Edge Cases & Error Handling:
+
+- **No matching tasks:** Display "No tasks match your filters" with suggestion to modify criteria.
+- **Search with no results:** Show "No tasks found for 'query'" with option to create new task.
+- **Filter combination error:** Reset to default view with explanation of invalid filter combination.
+
+### 3. Task Completion & Status Management
+
+**User Goal:** Mark tasks as complete and track progress.
+
+**Entry Points:** Task List checkboxes, Task Detail view, Bulk actions.
+
+**Success Criteria:** User can easily toggle task completion status and see visual feedback.
+
+#### Flow Diagram
+
+```mermaid
+graph TD
+    A[Start: Task List] --> B[Click Task Checkbox]
+    B --> C[Task Status Toggle]
+    C -- Mark Complete --> D[Visual Completion Animation]
+    D --> E[Task Moves to Completed Section]
+    E --> F[Progress Counter Updates]
+    F -- Click 'Undo' --> G[Revert to Incomplete]
+    G --> A
+```
+
+#### Edge Cases & Error Handling:
+
+- **Network error on status change:** Maintain optimistic UI update with retry mechanism.
+- **Bulk completion conflict:** Show progress indicator and handle partial failures gracefully.
 
 ## Wireframes & Mockups
 
@@ -117,165 +147,155 @@ graph TD
 
 ### Key Screen Layouts
 
-#### Ingredient Input Screen
+#### Main Dashboard
 
-**Purpose:** Primary interface for users to specify available ingredients.
-
-**Key Elements:**
-- Search/Input bar with auto-suggest for ingredients.
-- Dynamic list of currently added ingredients (with option to remove).
-- "Suggest Recipe" button.
-
-**Interaction Notes:** Real-time feedback as ingredients are added.
-
-**Design File Reference:** (Link to Figma/Sketch frame for Ingredient Input)
-
-#### Recipe Suggestion / Detail Screen
-
-**Purpose:** Displays the suggested recipe, its details, and cooking instructions.
+**Purpose:** Central hub for task overview and quick access to key features.
 
 **Key Elements:**
-- Recipe Name, Difficulty, Estimated Cook Time prominently displayed.
-- Ingredient list (highlighting missing vs. available).
-- Numbered recipe steps.
-- "Suggest Another" button.
-- "Start Cooking" / "Mark as Complete" button.
+- Quick stats (tasks due today, overdue, completed)
+- Quick-add task input field
+- Recent tasks list
+- Priority tasks section
 
-**Interaction Notes:** Clear visual hierarchy. User can easily scroll through steps.
+**Interaction Notes:** Minimal cognitive load with clear visual hierarchy.
 
-**Design File Reference:** (Link to Figma/Sketch frame for Recipe Detail)
+**Design File Reference:** (Link to Figma/Sketch frame for Dashboard)
 
-#### Daily Mystery Basket Challenge Screen
+#### Task List View
 
-**Purpose:** Presents the daily challenge and allows for completion.
-
-**Key Elements:**
-- Challenge Title ("Daily Mystery Basket").
-- List of challenge ingredients.
-- "Mark as Complete" button.
-- Visual indicator of challenge status (e.g., "In Progress," "Completed").
-
-**Interaction Notes:** Simple, clear call to action.
-
-**Design File Reference:** (Link to Figma/Sketch frame for Challenge Screen)
-
-#### Culinary Passport Screen
-
-**Purpose:** Visually displays a user's culinary exploration progress.
+**Purpose:** Primary interface for viewing and managing all tasks.
 
 **Key Elements:**
-- Grid or carousel of cuisine "stamps" / "badges."
-- Unearned stamps are greyed out; earned stamps are visible.
-- Clicking a stamp (future) could show details about that cuisine.
+- Filter and sort controls
+- Task cards with checkbox, title, due date, priority indicator
+- Bulk action toolbar
+- Pagination or infinite scroll
 
-**Interaction Notes:** Interactive (click to see details). Visually appealing.
+**Interaction Notes:** Scannable list with clear visual distinction between completed and pending tasks.
 
-**Design File Reference:** (Link to Figma/Sketch frame for Culinary Passport)
+**Design File Reference:** (Link to Figma/Sketch frame for Task List)
 
-#### Chef's Profile Screen
+#### Add/Edit Task Form
 
-**Purpose:** Showcases user achievements and provides access to other profile-related features.
+**Purpose:** Interface for creating new tasks or editing existing ones.
 
 **Key Elements:**
-- User's display name.
-- Total challenges completed count.
-- Link to or embedded view of Culinary Passport.
-- Placeholder for future achievements.
+- Task title input (required)
+- Description text area
+- Priority selector (High/Medium/Low)
+- Due date picker
+- Category/tag selector
+- Save/Cancel buttons
 
-**Interaction Notes:** Clean, easy to read, serves as a central hub for achievements.
+**Interaction Notes:** Progressive disclosure with optional fields collapsed by default.
 
-**Design File Reference:** (Link to Figma/Sketch frame for Chef's Profile)
+**Design File Reference:** (Link to Figma/Sketch frame for Task Form)
+
+#### Task Detail View
+
+**Purpose:** Detailed view of individual tasks with full information and actions.
+
+**Key Elements:**
+- Task title and description
+- Due date and priority prominently displayed
+- Completion status toggle
+- Edit/Delete action buttons
+- Creation and modification timestamps
+
+**Interaction Notes:** Clean, focused view with clear action hierarchy.
+
+**Design File Reference:** (Link to Figma/Sketch frame for Task Detail)
 
 ## Component Library / Design System
 
-**Design System Approach:** We will establish a foundational design system using Tailwind CSS for utility-first styling and a component library built with React. This approach promotes rapid development, consistency, and scalability. Reusable components will be developed and documented (in future iterations).
+**Design System Approach:** We will establish a foundational design system using Tailwind CSS for utility-first styling and a component library built with React. This approach promotes rapid development, consistency, and scalability for productivity-focused interfaces.
 
 ### Core Components
 
-- **Button:** Primary, Secondary, Destructive, Disabled states.
-- **Input Field:** Text, Number, Search types with validation states (error, success).
-- **Card:** Generic container for displaying recipe suggestions, challenge details.
-- **Badge/Tag:** Small visual elements for difficulty rating, cuisine type, or challenge completion.
-- **Navigation Elements:** Bottom navigation bar (mobile), sidebar/header (desktop).
-- **Modal/Dialog:** For confirmations or additional information.
+- **Button:** Primary (save, add), Secondary (edit, cancel), Destructive (delete), Disabled states.
+- **Input Field:** Text, Date, Select types with validation states (error, success, focus).
+- **Task Card:** Compact card component for task display with checkbox, title, metadata.
+- **Badge/Tag:** Priority indicators (High/Medium/Low), status badges, category tags.
+- **Navigation Elements:** Top navigation bar (desktop), bottom navigation (mobile).
+- **Modal/Dialog:** For task deletion confirmation and detailed task editing.
+- **Checkbox:** Task completion toggle with smooth animation states.
+- **Date Picker:** Intuitive date selection for due dates.
 
 ## Branding & Style Guide
 
 ### Visual Identity
 
-**Brand Guidelines:** The Cooking Game will have a vibrant and inviting visual identity, reflecting a modern and playful approach to cooking. Imagery will be clean and appetizing.
+**Brand Guidelines:** The Personal To-Do List App will have a clean, professional visual identity that promotes focus and productivity. The design should feel calm, organized, and trustworthy.
 
 ### Color Palette
 
 | Color Type | Hex Code | Usage |
 |:-----------|:---------|:------|
-| Primary | #FF6B6B (Soft Red) | Main calls to action, active states |
-| Secondary | #4ECDC4 (Teal) | Supporting actions, highlights |
-| Accent | #FFE66D (Soft Yellow) | Notifications, key information |
-| Success | #7BC043 (Green) | Positive feedback, confirmations |
-| Warning | #FFC107 (Amber) | Cautions, important notices |
-| Error | #DC3545 (Red) | Errors, destructive actions |
-| Neutral | #F8F8F8 (Light Gray), #333333 (Dark Gray) | Backgrounds, text, borders |
+| Primary | #3B82F6 (Blue) | Main actions, active states, links |
+| Secondary | #10B981 (Green) | Success states, completed tasks |
+| Accent | #F59E0B (Amber) | High priority, warnings, important info |
+| Success | #22C55E (Green) | Confirmations, task completions |
+| Warning | #EF4444 (Red) | Overdue tasks, urgent items |
+| Error | #DC2626 (Red) | Errors, destructive actions |
+| Neutral | #F8FAFC (Light Gray), #1E293B (Dark Gray) | Backgrounds, text, borders |
 
 ### Typography
 
 **Font Families:**
-- **Primary:** 'Poppins', sans-serif (for headings and strong statements)
-- **Secondary:** 'Lato', sans-serif (for body text and labels)
-- **Monospace:** 'Fira Code', monospace (for any code snippets or fixed-width text)
+- **Primary:** 'Inter', sans-serif (for all text - clean, highly readable)
+- **Secondary:** 'JetBrains Mono', monospace (for timestamps, IDs, or technical text)
 
 **Type Scale:**
 
 | Element | Size | Weight | Line Height |
 |:--------|:-----|:-------|:------------|
-| H1 | 2.5rem | 700 | 1.2 |
-| H2 | 2rem | 600 | 1.3 |
-| H3 | 1.75rem | 600 | 1.4 |
+| H1 | 2rem | 700 | 1.25 |
+| H2 | 1.5rem | 600 | 1.3 |
+| H3 | 1.25rem | 600 | 1.4 |
 | Body | 1rem | 400 | 1.5 |
 | Small | 0.875rem | 400 | 1.4 |
+| Caption | 0.75rem | 500 | 1.3 |
 
 ### Iconography
 
-**Icon Library:** React Icons or a custom SVG icon set for common culinary and game-related symbols.
+**Icon Library:** Lucide React or Heroicons for consistent, clean iconography suitable for productivity apps.
 
-**Usage Guidelines:** Icons should be simple, recognizable, and scale well across different sizes.
+**Usage Guidelines:** Icons should be simple, recognizable, and support the task management context (checkmarks, calendars, priorities, etc.).
 
 ### Spacing & Layout
 
-**Grid System:** A responsive 12-column grid system (implicitly provided by Tailwind CSS utilities).
+**Grid System:** A responsive 12-column grid system using Tailwind's grid utilities.
 
-**Spacing Scale:** A consistent spacing scale using Tailwind's default spacing utilities (multiples of 0.25rem/4px) for padding, margin, and gaps.
+**Spacing Scale:** Consistent spacing scale using Tailwind's default spacing utilities (4px base unit) for consistent visual rhythm.
 
 ## Accessibility Requirements
 
 ### Compliance Target
 
-**Standard:** WCAG 2.1 Level AA (as a target for MVP, with continuous improvement).
+**Standard:** WCAG 2.1 Level AA compliance to ensure the app is usable by people with disabilities.
 
 ### Key Requirements
 
 #### Visual:
-- **Color contrast ratios:** All text and essential UI elements must meet WCAG 2.1 AA contrast ratios (4.5:1 for small text, 3:1 for large text).
-- **Focus indicators:** Clear and visible focus indicators for all interactive elements (buttons, inputs, links) on keyboard navigation.
-- **Text sizing:** Users must be able to resize text up to 200% without loss of content or functionality.
+- **Color contrast ratios:** All text and UI elements meet WCAG 2.1 AA contrast ratios (4.5:1 for normal text, 3:1 for large text).
+- **Focus indicators:** Clear, visible focus indicators for all interactive elements during keyboard navigation.
+- **Text scaling:** Support for 200% text scaling without loss of functionality.
 
 #### Interaction:
-- **Keyboard navigation:** All interactive elements must be reachable and operable via keyboard alone (Tab, Enter, Spacebar).
-- **Screen reader support:** Implement proper ARIA attributes and semantic HTML to ensure screen readers can accurately interpret and convey content and functionality.
-- **Touch targets:** Minimum touch target size of 44x44 CSS pixels for interactive elements on touch devices.
+- **Keyboard navigation:** All features accessible via keyboard (Tab, Enter, Space, Arrow keys).
+- **Screen reader support:** Proper ARIA labels and semantic markup for task status, priorities, and actions.
+- **Touch targets:** Minimum 44px touch targets for mobile interactions.
 
 #### Content:
-- **Alternative text:** Provide descriptive alt text for all meaningful images.
-- **Heading structure:** Use proper HTML heading (h1 to h6) hierarchy to define content structure.
-- **Form labels:** All form inputs must have associated, descriptive labels.
+- **Alternative text:** Descriptive alt text for any informational images or icons.
+- **Heading structure:** Logical heading hierarchy (h1-h6) for content organization.
+- **Form labels:** Clear, descriptive labels for all form inputs.
 
 ### Testing Strategy
 
-Accessibility testing will be integrated into the development workflow:
-
-- **Automated checks:** Use tools like Axe-core (via Jest-axe for unit tests, or Playwright a11y for E2E tests).
-- **Manual review:** Regular manual testing with keyboard navigation and screen readers (e.g., NVDA, VoiceOver) for critical flows.
-- **Browser developer tools:** Utilize built-in accessibility inspectors.
+- **Automated checks:** Integrate axe-core for automated accessibility testing in development.
+- **Manual review:** Regular testing with keyboard navigation and screen readers (NVDA, VoiceOver).
+- **User testing:** Include users with disabilities in usability testing.
 
 ## Responsiveness Strategy
 
@@ -283,55 +303,57 @@ Accessibility testing will be integrated into the development workflow:
 
 | Breakpoint | Min Width | Max Width | Target Devices |
 |:-----------|:----------|:----------|:---------------|
-| Mobile | 320px | 767px | Smartphones (portrait/landscape) |
-| Tablet | 768px | 1023px | Tablets (portrait/landscape) |
-| Desktop | 1024px | 1439px | Laptops, smaller desktops |
-| Wide | 1440px | - | Large monitors |
+| Mobile | 320px | 767px | Smartphones |
+| Tablet | 768px | 1023px | Tablets |
+| Desktop | 1024px | 1439px | Laptops, monitors |
+| Wide | 1440px | - | Large displays |
 
 ### Adaptation Patterns
 
 #### Layout Changes:
-- Mobile-first design approach.
-- Flexible grids and flexbox layouts will adapt content blocks.
-- Single-column layouts for mobile, expanding to multi-column for larger screens.
+- Mobile-first approach with single-column layouts expanding to multi-column.
+- Responsive grid system for task cards (1 column mobile, 2-3 columns tablet/desktop).
+- Collapsible navigation and filter panels on smaller screens.
 
 #### Navigation Changes:
-- Persistent bottom navigation bar for mobile.
-- Sidebar or top navigation bar for tablet/desktop.
-- Off-canvas menus for responsive navigation if needed.
+- Top navigation bar for desktop with clear section labels.
+- Bottom navigation bar for mobile with essential actions.
+- Hamburger menu for secondary options on mobile.
 
 #### Content Priority:
-- Crucial content and calls-to-action are prioritized on smaller screens.
-- Secondary information may be collapsed or presented differently.
+- Essential task information prioritized on mobile (title, due date, priority).
+- Additional metadata and actions revealed through expansion or separate views.
 
 #### Interaction Changes:
-- Touch-friendly interactions for mobile/tablet.
-- Hover states enabled for desktop.
+- Touch-friendly tap targets and gestures for mobile.
+- Hover states and tooltips for desktop users.
+- Context menus adapted for touch vs. mouse interaction.
 
 ## Animation & Micro-interactions
 
 ### Motion Principles
 
-Animations will be subtle, purposeful, and enhance the user experience without causing distraction or performance issues. They will provide visual feedback and delight.
+Animations should be subtle and purposeful, providing feedback and enhancing the user experience without being distracting. They should support the productivity-focused nature of the app.
 
 ### Key Animations
 
-- **Ingredient Add/Remove:** Subtle fade-in/out or slide animation for items in the ingredient list. (Duration: 150ms, Easing: ease-out)
-- **Recipe Suggestion Transition:** A smooth card-flip or slide animation when "Suggest Another" recipe is chosen. (Duration: 300ms, Easing: ease-in-out)
-- **Challenge Completion:** A brief, celebratory visual effect or animation when a Mystery Basket Challenge is marked complete, and a stamp is earned. (Duration: 500ms, Easing: spring-like)
-- **Stamp Unlock:** A subtle glow or pop animation for newly unlocked Culinary Passport stamps. (Duration: 200ms, Easing: ease-out)
+- **Task Completion:** Smooth checkbox animation with checkmark draw and subtle strike-through effect. (Duration: 200ms, Easing: ease-out)
+- **Task Addition:** Gentle slide-in animation for new tasks appearing in the list. (Duration: 150ms, Easing: ease-out)
+- **Priority Changes:** Color transition animation when priority levels change. (Duration: 100ms, Easing: ease-in-out)
+- **Filter Application:** Smooth transition when tasks are filtered or sorted. (Duration: 250ms, Easing: ease-in-out)
+- **Loading States:** Subtle pulse animation for loading indicators. (Duration: 1000ms, Easing: ease-in-out, infinite)
 
 ## Performance Considerations
 
 ### Performance Goals
 
-- **Page Load:** Core Web Vitals (LCP, FID, CLS) within "Good" thresholds. Target LCP < 2.5s.
-- **Interaction Response:** Input latency and animation framerate should be smooth (target 60fps).
-- **Animation FPS:** Maintain consistent 60 frames per second (FPS) for all animations.
+- **Page Load:** Initial page load under 2 seconds on 3G connections.
+- **Task Operations:** CRUD operations complete within 500ms with immediate optimistic UI updates.
+- **Smooth Interactions:** Maintain 60fps during animations and scrolling.
 
 ### Design Strategies
 
-- **Efficient Asset Loading:** Optimize images (Next.js Image component), lazy-load components and images.
-- **Minimal CSS & JS:** Leverage Tailwind's purging to ensure minimal CSS bundle size. Optimize JavaScript bundles with code splitting.
-- **Server-Side Rendering (SSR) / Static Site Generation (SSG):** Utilize Next.js's rendering capabilities to deliver pre-rendered HTML for faster initial content display.
-- **Client-Side Caching:** Implement data fetching libraries (e.g., TanStack Query) with built-in caching for API responses.
+- **Efficient Rendering:** Virtualized lists for large task sets, lazy loading of task details.
+- **Optimized Assets:** Compressed images, optimized icons, minimal CSS/JS bundles.
+- **Caching Strategy:** Smart caching of task data for offline viewing and quick access.
+- **Progressive Loading:** Load essential features first, then progressive enhancement.
