@@ -10,6 +10,7 @@ You will work with the existing project documentation in this repository:
 
 - `docs/PRD.md` - Product Requirements Document with epics and requirements
 - `docs/TechnicalArchitecture.md` - Technical design and component breakdown
+- `docs/front-end-spec.md` - UI/UX specification with design system and user flows
 - `.claude/CLAUDE.md` - Project context and development guidelines
 
 ## Process Steps
@@ -31,7 +32,16 @@ Follow these steps to complete the task, make a todo list and think ultrahard:
   - Parse data flow requirements for implementation order
   - Identify external service integrations and APIs
   - Extract security and performance considerations
-- **Cross-reference documents**: Ensure every PRD requirement has technical implementation path
+- **Deep parse `docs/front-end-spec.md`**:
+  - Extract user personas and UX goals for feature prioritization
+  - Parse information architecture and navigation structure
+  - Map user flows to implementation requirements
+  - Extract wireframe and component specifications
+  - Parse design system (colors, typography, spacing, components)
+  - Identify accessibility requirements and testing strategies
+  - Extract responsiveness breakpoints and adaptation patterns
+  - Parse animation and performance requirements
+- **Cross-reference documents**: Ensure every PRD requirement has technical implementation path and UI specification
 
 ### 2. Research GitHub issue best practices:
 
