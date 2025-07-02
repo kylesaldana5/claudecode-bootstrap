@@ -1,6 +1,6 @@
 # ClaudeCode Bootstrap
 
-A GitHub template repository for rapidly bootstrapping new development projects with Claude Code integration, automated workflows, and comprehensive development tooling.
+A GitHub template repository for rapidly bootstrapping new development projects with Claude Code || Curosr integration, automated workflows, and comprehensive development tooling.
 
 ## 🚀 Quick Start
 
@@ -11,8 +11,7 @@ Click the **"Use this template"** button above to create a new repository from t
 ```bash
 git clone https://github.com/yourusername/your-new-project.git
 cd your-new-project
-chmod +x kickstart
-./kickstart "My Awesome Project"
+run claude to init 
 ```
 
 ### 3. Generate Your Documentation
@@ -29,14 +28,9 @@ This repository includes comprehensive example documents that you can use as tem
 - Development workflow planning
 
 #### 💡 My Personal Workflow for Document Generation
-For generating comprehensive PRDs and technical documentation, I personally use the [BMAD Method](https://github.com/bmadcode/BMAD-METHOD) with Claude Code. This systematic approach helps create thorough, professional documentation through AI-assisted development workflows.
+For generating comprehensive PRDs and technical documentation, I personally use the [BMAD Method](https://github.com/bmadcode/BMAD-METHOD). This systematic approach helps create thorough, professional documentation through AI-assisted development workflows.
 
 **Quick setup:**
-```bash
-npx bmad-method install
-# Choose "Complete installation" and "Claude Code"
-```
-
 The BMAD Method provides specialized agents (`/pm`, `/architect`, `/analyst`) that work together to create detailed project documentation, which I then use as the foundation for projects in this template.
 
 Simply copy the structure from the example documents and adapt the content for your specific project needs.
@@ -52,6 +46,14 @@ Simply copy the structure from the example documents and adapt the content for y
 # Review pull requests thoroughly
 /review
 ```
+
+### 4. To use Cursor instead of Cluade Code
+Still follow step one from above to generate all github issues from your PRD
+```bash
+# Create GitHub issues from your PRD
+/bootstrap
+```
+
 
 ## 📋 What's Included
 
