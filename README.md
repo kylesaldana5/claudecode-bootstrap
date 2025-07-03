@@ -11,7 +11,7 @@ Click the **"Use this template"** button above to create a new repository from t
 ```bash
 git clone https://github.com/yourusername/your-new-project.git
 cd your-new-project
-run claude to init 
+run claude then  /init 
 ```
 
 ### 3. Generate Your Documentation
@@ -47,13 +47,34 @@ Simply copy the structure from the example documents and adapt the content for y
 /review
 ```
 
-### 4. To use Cursor instead of Cluade Code
-Still follow step one from above to generate all github issues from your PRD
-```bash
-# Create GitHub issues from your PRD
-/bootstrap
-```
+### 4. Cursor IDE Setup & Fast GitHub Issue Access
 
+Follow these steps to configure Cursor and make GitHub issues instantly accessible:
+
+1. **Open this repository in Cursor**  
+   (If Cursor isn't installed yet, download it from https://cursor.sh or use your preferred installation method.)  
+
+2. **Generate your GitHub issues**  
+   Use the `/bootstrap` command via Claude Code to turn your PRD into issues:
+
+   ```bash
+   /bootstrap
+   ```
+
+3. **Teach Cursor to remember the quick-view command**  
+   After the issues are created, tell the Cursor assistant:
+
+   ```
+   When I say "Get GitHub issue <number>", run:
+   bash -lc 'GH_PAGER= gh issue view <number>'
+   ```
+
+   Cursor will store this as a memory so you can simply type, for example, `Get GitHub issue 42` and see the issue immediately inside the IDE.
+
+4. **Verify**  
+   Ask Cursor: `Get GitHub issue 1` — it should display the issue details without any extra flags.
+
+This setup lets you stay inside Cursor while inspecting and working on issues, streamlining your workflow.
 
 ## 📋 What's Included
 
@@ -84,7 +105,6 @@ your-project/
 │   ├── PRD.md             # Product Requirements (add your own)
 │   └── TechnicalArchitecture.md  # Technical design (add your own)
 ├── .mcp.json              # Model Context Protocol configurations
-├── kickstart              # Project initialization script
 └── README.md              # This file (will be updated for your project)
 ```
 
@@ -95,12 +115,6 @@ your-project/
 - [GitHub CLI](https://cli.github.com/) (optional, for enhanced GitHub integration)
 - Git configured with your credentials
 
-### Kickstart Script
-The `./kickstart "Project Name"` script automatically:
-- ✅ Replaces template placeholders with your project details
-- ✅ Initializes Claude Code with proper configuration
-- ✅ Creates documentation directory structure
-- ✅ Provides clear next steps for development
 
 ### MCP Integration Setup
 The template includes two MCP servers for enhanced development capabilities:
@@ -154,14 +168,13 @@ Repeat the work/review cycle for continuous development.
 ## 📖 Command Reference
 
 ### Core Commands
-- `./kickstart "Project Name"` - Initialize new project from template
 - `/bootstrap` - Generate GitHub issues from PRD
 - `/work` - Implement features systematically
 - `/review` - Review pull requests
 - `/issues` - Create individual issues
 
 ### File Structure Commands
-After running kickstart, your project will have:
+After running project setup:
 - Clear documentation structure in `docs/`
 - Automated development workflows in `.claude/commands/`
 - GitHub templates and CI/CD in `.github/`
@@ -206,21 +219,6 @@ The template is framework-agnostic. Add tech-stack-specific configurations as ne
 - Testing frameworks
 - Deployment configurations
 
-## 🚀 Why Use This Template?
-
-### Before ClaudeCode Bootstrap
-- ❌ Manual Claude Code setup for each project
-- ❌ Repetitive MCP configuration
-- ❌ Inconsistent development workflows
-- ❌ Time-consuming GitHub issue creation
-- ❌ Ad-hoc project structure
-
-### After ClaudeCode Bootstrap
-- ✅ **One-command setup** → Fully configured project ready for development
-- ✅ **Automated workflows** → Consistent development processes
-- ✅ **AI-enhanced development** → Leverage Claude Code's full capabilities
-- ✅ **Rapid prototyping** → From idea to implementation faster
-- ✅ **Scalable structure** → Organized foundation that grows with your project
 
 ## 🎯 Perfect For
 
@@ -252,5 +250,3 @@ MIT License - Use this template for any project, commercial or personal.
 - [Template Repository](https://github.com/kylesaldana5/claudecode-bootstrap)
 
 ---
-
-**Ready to accelerate your development?** Click "Use this template" and run `./kickstart "Your Project Name"` to get started!
