@@ -81,7 +81,7 @@ This setup lets you stay inside Cursor while inspecting and working on issues, s
 ### 🤖 Claude Code Integration
 - **CLAUDE.md** - Project context and development guidelines
 - **Automation Commands** - Pre-built workflows for common development tasks
-- **MCP Configurations** - Enhanced AI capabilities with Serena IDE assistant and Context7 documentation
+- **MCP Configurations** - Enhanced AI capabilities with Context7 documentation
 
 ### ⚡ Development Automation
 - **Bootstrap Command** - Converts PRD and Technical Architecture into comprehensive GitHub issue backlog
@@ -119,13 +119,7 @@ your-project/
 ### MCP Integration Setup
 The template includes two MCP servers for enhanced development capabilities:
 
-1. **Serena IDE Assistant** (auto-configured)
-   - Intelligent code completion and analysis
-   - Project-aware development assistance
-   - Requires `uvx` package manager (install with `curl -LsSf https://astral.sh/uv/install.sh | sh`)
-   - No additional API keys required
-
-2. **Context7 Documentation** (auto-configured)
+**Context7 Documentation** (auto-configured)
    - Access to comprehensive library documentation
    - Smart library ID resolution
    - Requires Node.js ≥ v18.0.0
@@ -200,10 +194,6 @@ Edit `.mcp.json` to add or modify MCP servers. Current configuration includes:
 ```json
 {
   "mcpServers": {
-    "serena": {
-      "command": "uvx",
-      "args": ["--from", "git+https://github.com/oraios/serena", "serena-mcp-server", "--context", "ide-assistant", "--project", "{{PROJECT_SLUG}}"]
-    },
     "context7": {
       "command": "npx",
       "args": ["-y", "@upstash/context7-mcp@latest"]
