@@ -60,10 +60,10 @@ Follow these steps to complete the pull request review:
 
 ### 6. Submit comprehensive review:
 
-- Use `gh pr review {pr_number}` to submit formal review
+- Use `gh pr review {pr_number} --comment` to submit formal review
 - Include specific line comments for individual issues
 - Provide overall summary with recommendations
-- Choose appropriate review action: APPROVE, REQUEST_CHANGES, or COMMENT
+- Always use COMMENT mode to avoid approval conflicts
 
 ## Review Categories
 
@@ -123,21 +123,23 @@ Follow these steps to complete the pull request review:
 
 ## Review Decision Framework
 
-### APPROVE ✅
+All reviews will be submitted as COMMENT mode, but should indicate the recommended action:
+
+### **Status: APPROVED** ✅
 
 - All requirements met completely
 - Code quality meets or exceeds standards
 - No significant issues or concerns
 - Ready for merge
 
-### REQUEST_CHANGES ❌
+### **Status: REQUEST_CHANGES** ❌
 
 - Critical bugs or security issues
 - Requirements not fully met
 - Significant code quality concerns
 - Breaking changes to existing functionality
 
-### COMMENT 💬
+### **Status: COMMENT** 💬
 
 - Minor suggestions for improvement
 - Questions about implementation choices
@@ -157,14 +159,11 @@ gh pr diff {pr_number}
 gh pr diff {pr_number} --name-only
 gh pr diff {pr_number} src/components/
 
-# Submit review with approval
-gh pr review {pr_number} --approve --body "Review summary..."
+# Submit comment-only review (default approach)
+gh pr review {pr_number} --comment --body "Review summary..."
 
-# Submit review requesting changes
-gh pr review {pr_number} --request-changes --body "Issues found..."
-
-# Submit comment-only review
-gh pr review {pr_number} --comment --body "Suggestions..."
+# Note: --approve and --request-changes options removed to avoid conflicts
+# All reviews use --comment mode with status indicated in the review body
 ```
 
 ## Success Criteria
